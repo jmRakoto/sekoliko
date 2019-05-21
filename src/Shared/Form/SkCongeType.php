@@ -33,7 +33,7 @@ class SkCongeType extends AbstractType
             ->add('motif', TextType::class, [
                 'label' => 'Description de congé ou permission',
                 'attr' => [
-                    'class' => 'form-control',  
+                    'class' => 'form-control',
                 ],
             ]);
     }
