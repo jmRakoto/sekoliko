@@ -52,7 +52,8 @@
     </div>
 
     {% block javascripts %}
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+        <script src="{{ asset('js/jspdf.js') }}"></script>
         <script src="{{ asset('js/moment.js') }}"></script>
         <script src="{{ asset('js/jquery.min.js') }}"></script>
         <script src="{{ asset('js/jquery.github.min.js') }}"></script>
