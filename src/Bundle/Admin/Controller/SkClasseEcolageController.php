@@ -73,6 +73,7 @@ class SkClasseEcolageController extends Controller
     {
         $_ecolage = new SkClasseEcolage();
         $skClasse = $request->request->get('classe');
+        $_sk_classe = '';
         $skClasse ? $_sk_classe = $this->getEntityService()->getEntityById(SkClasse::class,$skClasse) : false;
         $_form = $this->createForm(SkClasseEcolageType::class, $_ecolage);
         $_mois = $this->getEntityService()->getMonthList();
