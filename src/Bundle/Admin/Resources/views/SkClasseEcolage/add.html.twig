@@ -1,0 +1,48 @@
+
+{% form_theme form 'form/custom_fields.html.twig' %}
+
+{{ form_start(form,{"attr":{"id":"formPaiementClasse"}}) }}
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="">Selectionner le type de paiement</label>
+            <select name="designation" class="form-control" id="">
+                <option value="ecolage">Ecolage</option>
+                <option value="autres">Autres</option>
+            </select>
+        </div>
+        <div class="form-group" id="classe">
+            <label for="">Classe</label>
+            <select name="classe" class="form-control {% if skclasse %}disabled{% endif %}">
+                {% if skclasse %}
+                    <option value="{{ skclasse.id }}">{{ skclasse.classeNom }}</option>
+                {% else %}
+                <option value="">Selectionner la classe</option>
+                {% for classe in classe %}
+                    <option value="{{ classe.id }}">{{ classe.classeNom }}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="">Montant de la paiement</label>
+            <input type="text" name="montant" class="form-control">
+        </div>
+        <div class="form-group" id="moisList">
+            <label for="">Ajouter mois</label>
+            <select name="mois" class="form-control">
+                {% for key , month in mois %}
+                    <option value="{{ month }}">{{ month }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+<div class="box-footer">
+    <input type="submit" class="btn btn-primary btn-block"  id="addPaiement"  value="Enregistrer" name="new_guide"/>
+    <a data-dismiss="modal"
+       class="btn btn-google btn-block">
+        Annuler
+    </a>
+</div>
+{{ form_end(form) }}

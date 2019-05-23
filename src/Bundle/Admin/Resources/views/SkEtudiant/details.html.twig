@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <a href="#" id="pdfExp" class="btn btn-primary btn-icon-split print">
+    <a href="#" onclick="exportPdf('{{ etudiant.etudiant.username }}')" class="btn btn-primary btn-icon-split print">
                     <span class="icon text-white-50">
                       <i class="fas fa-print"></i>
                     </span>
@@ -40,7 +40,8 @@
                 <div class="col-md-6">
                     <label>Classe :</label> <span>{{ etudiant.classe.niveau.niveauNom }}</span><br><br>
                     <label>Niveau :</label> <span>{{ etudiant.classe.niveau.niveauNom }}</span><br><br>
-                    <label>Date d'inscription :</label> <span>{{ etudiant.etudiant.usrDateCreate |date('Y-m-d') }}</span><br><br>
+                    <label>Date d'inscription :</label>
+                    <span>{{ etudiant.etudiant.usrDateCreate |date('Y-m-d') }}</span><br><br>
                     {% if etudiant.isRenvoie == true %}
                         <label>Renvoyé le :</label> <span> {{ etudiant.dateRenvoie | date('Y-m-d') }}</span><br><br>
                         <label>Motifs de renvoie :</label> <span>{{ etudiant.motifRenvoie }}</span><br><br>
@@ -55,7 +56,8 @@
                 <div class="col-md-6">
                     <label>Mère :</label> <span>{{ etudiant.mere }}</span><br><br>
                     <label>Père :</label> <span>{{ etudiant.pere }}</span><br><br>
-                    <label>Date d'inscription :</label> <span>{{ etudiant.etudiant.usrDateCreate |date('Y-m-d') }}</span><br><br>
+                    <label>Date d'inscription :</label>
+                    <span>{{ etudiant.etudiant.usrDateCreate |date('Y-m-d') }}</span><br><br>
                     {% if etudiant.isRenvoie == true %}
                         <label>Renvoyé le :</label> <span> {{ etudiant.dateRenvoie | date('Y-m-d') }}</span><br><br>
                         <label>Motifs de renvoie :</label> <span>{{ etudiant.motifRenvoie }}</span><br><br>
@@ -68,26 +70,4 @@
         </div>
     </div>
 
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        $('#pdfExp').click(function () {
-            $('#studentFiche').css({
-                width: "21cm",
-                height: "29.7cm",
-                margin: "auto",
-            });
-            html2canvas(document.getElementById("studentFiche"), {
-                onrendered: function(canvas) {
-                    var imgData = canvas.toDataURL('image/png');
-                    var doc = new jsPDF("p", "mm", "a4"); //210mm wide and 297mm high
-                    doc.addImage(imgData, 'PNG', 10, 10);
-                    doc.save('sample.pdf');
-                }
-            });
-        });
-
-    </script>
 {% endblock %}

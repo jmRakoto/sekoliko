@@ -12,6 +12,23 @@ function annuleReserve(url){
 
 $('.btn-success').addClass('text-white')
 
+function exportPdf(etudiantName){
+    $('#studentFiche').css({
+        width: "21cm",
+        height: "29.7cm",
+        margin: "auto",
+    });
+    html2canvas(document.getElementById("studentFiche"), {
+        onrendered: function(canvas) {
+            var imgData = canvas.toDataURL('image/png');
+            var doc = new jsPDF("p", "mm", "a4");
+            doc.addImage(imgData, 'PNG', 10, 10);
+            doc.save(etudiantName+'.pdf');
+            location.reload()
+        }
+    });
+}
+
 /**
  * DataTables
  */

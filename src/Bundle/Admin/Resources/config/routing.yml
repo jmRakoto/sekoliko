@@ -78,3 +78,7 @@ tz_paiement:
 tz_conge:
     resource: "@AdminBundle/Resources/config/routing/conge.yml"
     prefix:   /conge
+
+tz_ecolage:
+    resource: "@AdminBundle/Resources/config/routing/ecolage.yml"
+    prefix:   /ecolage

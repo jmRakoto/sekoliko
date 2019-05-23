@@ -1,0 +1,24 @@
+ecolage_list:
+    path:     /
+    defaults: { _controller: "AdminBundle:SkClasseEcolage:index" }
+    methods:  [GET, POST]
+
+ecolage_new:
+    path:     /new
+    defaults: { _controller: "AdminBundle:SkClasseEcolage:new" }
+    methods:  [GET, POST]
+
+ecolage_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:SkClasseEcolage:edit" }
+    methods:  [GET, POST]
+
+ecolage_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminBundle:SkClasseEcolage:delete" }
+    methods:  [GET, POST]
+
+ecolage_classe:
+    path:     /classe/{id}
+    defaults: { _controller: "AdminBundle:SkClasseEcolage:listPaiementClasse" }
+    methods:  [GET, POST]

@@ -57,7 +57,7 @@ class SkEntityManager
      */
     public function getMonthList()
     {
-        $_month = [];
+        $_month = ['toutes les mois'];
         for ($m = 1; $m <= 12; ++$m) {
             array_push($_month, date('F', mktime(0, 0, 0, $m, 1)));
         }

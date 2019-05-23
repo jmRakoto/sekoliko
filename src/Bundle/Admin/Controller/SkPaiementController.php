@@ -60,7 +60,7 @@ class SkPaiementController extends Controller
     {
         $_paiement = new SkPaiement();
 
-        $_form = $this->createForm(SkPaiementType::class);
+        $_form = $this->createForm(SkPaiementType::class,$_paiement);
         $_form->handleRequest($request);
         $_classe_list = $this->getEntityService()->getAllListByEts(SkClasse::class);
         $_month_list = $this->getEntityService()->getMonthList();
@@ -177,13 +177,6 @@ class SkPaiementController extends Controller
         return $this->render('AdminBundle:SkPaiement:edit.html.twig');
     }
 
-//    /**
-//     * @return \Symfony\Component\HttpFoundation\Response
-//     */
-//    public function detailsAction()
-//    {
-//        return $this->render('AdminBundle:SkPaiement:details.html.twig');
-//    }
 
     /**
      * @return \Symfony\Component\HttpFoundation\RedirectResponse

@@ -11,6 +11,7 @@ namespace App\Bundle\Admin\Controller;
 use App\Bundle\User\Entity\User;
 use App\Bundle\User\Form\UserType;
 use App\Shared\Entity\SkClasse;
+use App\Shared\Entity\SkClasseEcolage;
 use App\Shared\Entity\SkClasseMatiere;
 use App\Shared\Entity\SkEtudiant;
 use App\Shared\Entity\SkMatiere;
@@ -553,4 +554,5 @@ class SkClassController extends Controller
             'form_upload' => $_form_upload->createView(),
         ));
     }
+
 }
