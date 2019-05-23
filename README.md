@@ -49,14 +49,5 @@ To import student data go to /admin/classe/ then click on student list /new stud
 | jul | jul    | jul1@jul.com | jul1     | jul     | 345475684 | 29/01/95 | M | Passant  | Rakoto | Rasoa | 0329473033 |
 | jul | jul    | jul2@jul.com | jul2     | jul     | 345475684 | 29/01/95 | F | Redoublant | Rakoto | Rasoa | 0329473033 |
 
-## Front
-
-- Run `yarn install` to install all dependencies.
-
-- Run `npm run watch` to watch your changes.
-
-- Todo
-  - Hot reload feature to improve _Developer Experience_
-  - Add tests.
 
 _Made for all Malagasy kids !!!_
