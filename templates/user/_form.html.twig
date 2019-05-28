@@ -1,4 +1,44 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="card shadow mb-4">
+    <div class="card-body">
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-6">
+                {{ form_row(form.username) }}
+                {{ form_row(form.nom) }}
+                {{ form_row(form.prenom) }}
+                {{ form_row(form.sexe) }}
+                {{ form_row(form.contact) }}
+            </div>
+            <div class="col-md-6">
+                {{ form_row(form.contact) }}
+                {{ form_row(form.email) }}
+                <div class="form-group">
+                    <label for="rolesListe">Choisissez une role de l'utilisateur</label>
+                    <select name="role" class="form-control" id="rolesListe">
+                        {% for key,roles in role %}
+                            <option value="{{ roles }}">{{ key }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                        <input type="text" name="dateN" placeholder="date de naissance" class="form-control datetimepicker-input" data-target="#datetimepicker1"/>
+                        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+                {{ form_row(form.plainPassword) }}
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+        <a href="{{ path('user_index') }}" class="float-left">back to list</a>
+        <button class="btn btn-info float-right">{{ button_label|default('Save') }}</button>
+    </div>
+    {{ form_end(form) }}
+</div>
+

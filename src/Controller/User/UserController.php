@@ -3,6 +3,7 @@
 namespace App\Controller\User;
 
 use App\Entity\User;
+use App\Form\Type\RegistrationFormType;
 use App\Form\User1Type;
 use App\Services\EntityServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,17 +40,24 @@ class UserController extends AbstractController
      * @Route("/new", name="user_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function new(Request $request): Response
     {
         $user = new User();
-        $form = $this->createForm(User1Type::class, $user);
+        $_roles = $this->_es->getRolesUser();
+
+        $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $_role = $request->request->get('role');
+            $_date_de_naissance = $request->request->get('dateN');
+            $user->setDateDeNaissance(new \DateTime($_date_de_naissance));
+            $user->setRoles([$_role]);
+            $user->setEnabled(true);
+
+            $this->_es->save($user,'new');
 
             return $this->redirectToRoute('user_index');
         }
@@ -57,6 +65,7 @@ class UserController extends AbstractController
         return $this->render('user/new.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+            'role' => $_roles
         ]);
     }
 

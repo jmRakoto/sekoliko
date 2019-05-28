@@ -41,6 +41,33 @@ class EntityServices
         return $this->em->getRepository($_entity_name)->findBy($_array_find, array('id' => 'DESC'));
     }
 
+    public function getRolesUser()
+    {
+        if ($this->container->get('security.authorization_checker')->isGranted('ROLE_ADMIN')){
+            $_roles = [
+                'Admin' => 'ROLE_ADMIN',
+                'Profs' => 'ROLE_PROFS',
+                'Secretaires' => 'ROLE_SECRETAIRE',
+                'Scolarité' => 'ROLE_SCOLARITE',
+                'Etudiants' => 'ROLE_ETUDIANT',
+                'Bibliothequaire' => 'ROLE_BIBLIOTHEQUE',
+                'Logistique' => 'ROLE_LOGISTIQUE',
+                'Responsable personnels' => 'ROLE_RESP_PERS',
+            ];
+        } elseif($this->container->get('security.authorization_checker')->isGranted('ROLE_SECRETAIRE')) {
+            $_roles = [
+                'Profs' => 'ROLE_PROFS',
+                'Secretaires' => 'ROLE_SECRETAIRE',
+                'Scolarité' => 'ROLE_SCOLARITE',
+                'Etudiants' => 'ROLE_ETUDIANT',
+                'Bibliothequaire' => 'ROLE_BIBLIOTHEQUE',
+                'Logistique' => 'ROLE_LOGISTIQUE',
+                'Responsable personnels' => 'ROLE_RESP_PERS',
+            ];
+        }
+
+        return $_roles;
+    }
     /**
      * @return object|string
      *
